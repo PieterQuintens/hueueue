@@ -1,0 +1,22 @@
+{
+  "lights": [
+    {
+      "data": {
+        "id": 1,
+        "name": "living"
+      }
+    },
+    {
+      "data": {
+        "id": 2,
+        "name": "bureau"
+      }
+    },
+    {
+      "data": {
+        "id": 3,
+        "name": "keuken"
+      }
+    }
+  ]
+}

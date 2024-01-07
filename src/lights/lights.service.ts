@@ -9,7 +9,7 @@ import {
   SetLightsStatePayload,
   MyLightsState,
 } from './dto/SetLightsStatePayload';
-import { defaultLightNames } from './types/constants';
+import { defaultLightNames, discoModeColors } from './types/constants';
 import { RoomColorAssignment } from './types/room-color-assignment.type';
 import { LightIds } from './types/light-id.type';
 import { LightsType } from './types/light.type';
@@ -140,54 +140,6 @@ export class LightsService {
     });
   }
 
-  private discoModeColors: MyLightsState[] = [
-    {
-      rgb: {
-        red: 255,
-        green: 0,
-        blue: 0,
-      },
-      brightness: 100,
-      colorTemperatureInKelvin: 0,
-    },
-    {
-      rgb: {
-        red: 0,
-        green: 255,
-        blue: 0,
-      },
-      brightness: 100,
-      colorTemperatureInKelvin: 0,
-    },
-    {
-      rgb: {
-        red: 0,
-        green: 0,
-        blue: 255,
-      },
-      brightness: 100,
-      colorTemperatureInKelvin: 0,
-    },
-    {
-      rgb: {
-        red: 0,
-        green: 122,
-        blue: 123,
-      },
-      brightness: 100,
-      colorTemperatureInKelvin: 0,
-    },
-    {
-      rgb: {
-        red: 122,
-        green: 123,
-        blue: 0,
-      },
-      brightness: 100,
-      colorTemperatureInKelvin: 0,
-    },
-  ];
-
   colorIndex = 0;
 
   assignColorsToRooms(
@@ -211,7 +163,7 @@ export class LightsService {
 
   async setAllLightColors(): Promise<void> {
     const roomColors = this.assignColorsToRooms(
-      this.discoModeColors,
+      discoModeColors,
       defaultLightNames,
     );
 
@@ -223,11 +175,11 @@ export class LightsService {
       const lightState = new LightsState()
         .on()
         .rgb(
-          this.discoModeColors[roomColor.colorIndex].rgb.red,
-          this.discoModeColors[roomColor.colorIndex].rgb.green,
-          this.discoModeColors[roomColor.colorIndex].rgb.blue,
+          discoModeColors[roomColor.colorIndex].rgb.red,
+          discoModeColors[roomColor.colorIndex].rgb.green,
+          discoModeColors[roomColor.colorIndex].rgb.blue,
         )
-        .brightness(this.discoModeColors[roomColor.colorIndex].brightness);
+        .brightness(discoModeColors[roomColor.colorIndex].brightness);
 
       await this.authenticatedApi.lights.setLightState(lightIds.id, lightState);
     }

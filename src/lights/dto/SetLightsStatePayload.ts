@@ -26,6 +26,6 @@ export class SetLightsStatePayload extends MyLightsState {
   @ApiProperty({ default: defaultLightNames })
   lightNameContains: string[] = defaultLightNames;
 
-  @ApiProperty({ default: 5 })
+  @ApiProperty({ default: 0 })
   delayInSeconds: number = 0;
 }
